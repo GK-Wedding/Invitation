@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icon.jpeg">
+    <title>Geetha Weds Karthik</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Applying custom fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fabbca; /* Very light pastel pink */
+            color: #4B4B4B; /* Soft dark grey */
+        }
+        
+        /* Font for names and special headings */
+        .font-display {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .font-cursive {
+             font-family: 'Great Vibes', cursive;
+        }
+        
+        /* Pastel color theme */
+        :root {
+            --bg-light: #FEF9F8; /* Lighter pink */
+            --bg-accent: #fad1d5; /* Light pink accent */
+            --text-primary: #5D4037; /* Brownish text */
+            --text-secondary: #D81B60; /* Rose pink for accents */
+            --border-color: #F8BBD0; /* Light pink border */
+        }
+        
+        /* Header styling */
+        header {
+            background-color: rgba(255, 251, 251, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        /* Hero section floral background */
+        #hero {
+            background-image: linear-gradient(rgba(255, 251, 251, 0.7), rgba(255, 251, 251, 0.9)), url('https://images.unsplash.com/photo-1518895949257-70227c7c3875?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Section styling */
+        .section-bg {
+            background-color: var(--bg-light);
+        }
+        .section-bg-alt {
+            background-color: #FFFFFF;
+        }
+        
+        /* Timeline styles */
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem; /* Space for icon */
+            left: 0px;
+        }
+        
+        /* The vertical line */
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 20px; /* Aligns with the icon center */
+            top: -10px; /* Start below the icon */
+            bottom: -2rem; /* Extend down */
+            width: 100px;
+            background-color: var(--border-color);
+        }
+        
+        /* Icon circle */
+        .timeline-icon {
+            position: absolute;
+            left:0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: var(--text-secondary);
+            color: white;
+            border-radius: 50%;
+            border: 2px solid #FFFBFB;
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for timeline */
+        @media (min-width: 768px) {
+            .timeline-container {
+                position: relative;
+            }
+            /* The main timeline bar */
+            .timeline-container::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 2rem;
+                bottom: 2rem;
+                width: 3px;
+                background-color: var(--border-color);
+            }
+            
+            .timeline-item {
+                padding-left: 0;
+                width: 50%;
+                margin-bottom: 0;
+            }
+            
+            .timeline-item:not(:last-child)::before {
+                display: none; /* Hide mobile-only line */
+            }
+
+            /* Right side */
+            .timeline-item:nth-child(even) {
+                align-self: flex-end;
+                padding-left: 3rem;
+            }
+            
+             /* Left side */
+            .timeline-item:nth-child(odd) {
+                align-self: flex-start;
+                padding-right: 3rem;
+                text-align: right;
+            }
+            
+             /* Right side icon */
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: -21px; /* Half of icon width to center on line */
+                transform: translateX(-50%);
+            }
+            
+            /* Left side icon */
+            .timeline-item:nth-child(odd) .timeline-icon {
+                left: auto;
+                right: -21px; /* Half of icon width to center on line */
+                transform: translateX(50%);
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content {
+                align-items: flex-end;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Couple Initials -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#hero" class="font-cursive text-4xl text-rose-600">
+                        G <span class="text-gray-500">&</span> K
+                    </a>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex md:space-x-8">
+                    <a href="#events" class="text-gray-600 hover:text-rose-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Events</a>
+                    <a href="#venue" class="text-gray-600 hover:text-rose-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Venue</a>
+                    <a href="#contact" class="text-gray-600 hover:text-rose-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Wishes</a>
+                </div>
+                <!-- Mobile Menu Button (Optional, simple nav for now) -->
+                <div class="md:hidden flex items-center">
+                     <a href="#events" class="text-gray-600 hover:text-rose-600 px-2 py-2 rounded-md text-sm font-medium transition-colors">Events</a>
+                    <a href="#venue" class="text-gray-600 hover:text-rose-600 px-2 py-2 rounded-md text-sm font-medium transition-colors">Venue</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="h-screen min-h-[600px] flex flex-col items-center justify-center text-center p-4 relative">
+            <div class="absolute inset-0 bg-white/30"></div> <!-- Soft overlay -->
+            <div class="relative z-10">
+                <p class="font-display text-2xl md:text-3xl text-gray-700 mb-4">
+                    We're Getting Married!
+                </p>
+                <h1 class="font-cursive text-6xl md:text-8xl lg:text-9xl text-rose-700 mb-2 shadow-sm">
+                    Geetha
+                    <span class="block md:inline text-4xl md:text-6xl text-gray-600">&</span>
+                    Karthik
+                </h1>
+                <p class="font-display text-3xl md:text-4xl text-gray-800 mt-4 mb-8">
+                    27th November 2025
+                </p>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" class="flex justify-center space-x-2 md:space-x-6 text-gray-700">
+                    <div class="bg-white/70 backdrop-blur-sm p-3 md:p-5 rounded-lg shadow-md w-20 md:w-28 border border-rose-100">
+                        <div id="days" class="text-3xl md:text-5xl font-bold">00</div>
+                        <div class="text-xs md:text-sm uppercase">Days</div>
+                    </div>
+                    <div class="bg-white/70 backdrop-blur-sm p-3 md:p-5 rounded-lg shadow-md w-20 md:w-28 border border-rose-100">
+                        <div id="hours" class="text-3xl md:text-5xl font-bold">00</div>
+                        <div class="text-xs md:text-sm uppercase">Hours</div>
+                    </div>
+                    <div class="bg-white/70 backdrop-blur-sm p-3 md:p-5 rounded-lg shadow-md w-20 md:w-28 border border-rose-100">
+                        <div id="minutes" class="text-3xl md:text-5xl font-bold">00</div>
+                        <div class="text-xs md:text-sm uppercase">Minutes</div>
+                    </div>
+                    <div class="bg-white/70 backdrop-blur-sm p-3 md:p-5 rounded-lg shadow-md w-20 md:w-28 border border-rose-100">
+                        <div id="seconds" class="text-3xl md:text-5xl font-bold">00</div>
+                        <div class="text-xs md:text-sm uppercase">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invitation Intro -->
+        <section class="py-16 md:py-24 section-bg-alt">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                 <h2 class="font-display text-4xl md:text-5xl text-rose-600 mb-6">Join us as we begin our new life together</h2>
+                 <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    With joyous hearts and the blessings of our parents, we invite you to celebrate our wedding.
+                 </p>
+                 
+            </div>
+        </section>
+
+        <!-- 2. Our Story -->
+        <section id="story" class="py-16 md:py-24 section-bg">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="font-display text-5xl md:text-6xl text-center text-rose-600 mb-12">Our Story</h2>
+                
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <!-- Image -->
+                    <div class="w-full md:w-1/2">
+                        <img src="1.jpeg" alt="Geetha and Karthik" class="rounded-xl shadow-2xl w-full h-auto object-cover"
+                         onerror="this.src='https://placehold.co/600x400/FDF4F5/D81B60?text=Geetha+%26+Karthik'">
+                    </div>
+                    
+                    <!-- Text & Quiz -->
+                    <div class="w-full md:w-1/2">
+                        <p class="font-display text-3xl text-gray-700 mb-6 leading-snug">
+                            "Together is our favorite place to be."
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            From the moment our paths crossed, we knew this was something special. What started as shared glances and shy smiles blossomed into a love story we'll cherish forever. We've built countless memories, supported each other's dreams, and found our forever person. We're so excited to take this next step and can't wait to celebrate with you!
+                        </p>
+
+                        <!-- Fun Quiz -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg mt-8 border border-rose-100">
+                            <h4 class="text-xl font-semibold text-rose-700 mb-4">A Fun Little Quiz!</h4>
+                            <p class="text-gray-600 mb-4">Are you from the Groom's side or Bride's side?</p>
+                            <div class="flex space-x-4 mb-4">
+                                <button onclick="selectSide('groom')" id="btn-groom" class="flex-1 bg-gray-200 hover:bg-rose-100 text-gray-700 font-medium py-2 px-4 rounded-lg transition-all">Groom's Side</button>
+                                <button onclick="selectSide('bride')" id="btn-bride" class="flex-1 bg-gray-200 hover:bg-rose-100 text-gray-700 font-medium py-2 px-4 rounded-lg transition-all">Bride's Side</button>
+                            </div>
+                            
+                            <div id="quiz-question" class="hidden mt-4">
+                                <p id="question-text" class="font-semibold text-gray-700 mb-3"></p>
+                                <div class="flex space-x-3">
+                                    <input type="text" id="quiz-answer" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300" placeholder="Your answer...">
+                                    <button onclick="checkAnswer()" class="bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-5 rounded-lg transition-colors">Submit</button>
+                                </div>
+                                <p id="quiz-feedback" class="text-sm mt-3"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery -->
+        <section class="py-16 md:py-24 section-bg-alt">
+             <div class="max-w-6xl mx-auto px-6">
+                <h2 class="font-display text-5xl md:text-6xl text-center text-rose-600 mb-12">Moments We Cherish</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                     <img src="3.jpeg" alt="Couple photo 1" class="rounded-lg shadow-lg object-cover w-full h-80"
+                      onerror="this.src='https://placehold.co/400x500/FDF4F5/D81B60?text=Love'">
+                     <img src="2.jpeg" alt="Couple photo 2" class="rounded-lg shadow-lg object-cover w-full h-80"
+                      onerror="this.src='https://placehold.co/400x500/FDF4F5/D81B60?text=Together'">
+                     <img src="WhatsApp Image 2025-10-25 at 12.37.31 copy.jpeg" alt="Couple photo 3" class="rounded-lg shadow-lg object-cover w-full h-80"
+                      onerror="this.src='https://placehold.co/400x500/FDF4F5/D81B60?text=Forever'">
+                 </div>
+             </div>
+        </section>
+
+        <!-- 3. Events -->
+        <section id="events" class="py-16 md:py-24 section-bg">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="font-display text-5xl md:text-6xl text-center text-rose-600 mb-16">Wedding Events</h2>
+                
+                <!-- Timeline Container -->
+                <div class="flex flex-col timeline-container">
+
+                    <!-- Event 1: STAMBAPRATHISTA -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="sun"></i>
+                        </div>
+                        <div class="timeline-content flex flex-col bg-white p-6 rounded-lg shadow-lg border border-rose-100">
+                            <h3 class="text-2xl font-semibold text-rose-700 mb-1">Stambaprathista</h3>
+                            <time class="text-sm font-medium text-gray-500 mb-2">26th Nov 2025, Wednesday | 2:00 PM - 3:00 PM</time>
+                            <p class="text-gray-600">The auspicious beginning of our wedding ceremonies.</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: PRADHANAM -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="gem"></i>
+                        </div>
+                        <div class="timeline-content flex flex-col bg-white p-6 rounded-lg shadow-lg border border-rose-100">
+                            <h3 class="text-2xl font-semibold text-rose-700 mb-1">Pradhanam</h3>
+                            <time class="text-sm font-medium text-gray-500 mb-2">26th Nov 2025, Wednesday | 4:00 PM - 5:00 PM</time>
+                            <p class="text-gray-600">An important pre-wedding ritual.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 3: RECEPTION -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="music"></i>
+                        </div>
+                        <div class="timeline-content flex flex-col bg-white p-6 rounded-lg shadow-lg border border-rose-100">
+                            <h3 class="text-2xl font-semibold text-rose-700 mb-1">Reception</h3>
+                            <time class="text-sm font-medium text-gray-500 mb-2">26th Nov 2025, Wednesday | 6:30 PM Onwards</time>
+                            <p class="text-gray-600">Join us for an evening of celebration, dinner, and dancing! Featuring light music by DJ AJITH.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 4: UPANAYANAM -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="flame"></i>
+                        </div>
+                        <div class="timeline-content flex flex-col bg-white p-6 rounded-lg shadow-lg border border-rose-100">
+                            <h3 class="text-2xl font-semibold text-rose-700 mb-1">Upanayanam</h3>
+                            <time class="text-sm font-medium text-gray-500 mb-2">27th Nov 2025, Thursday | 3:00 AM - 4:00 AM</time>
+                            <p class="text-gray-600">A sacred thread ceremony.</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 5: MUHURTHAM -->
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i data-lucide="heart"></i>
+                        </div>
+                        <div class="timeline-content flex flex-col bg-white p-6 rounded-lg shadow-lg border border-rose-100">
+                            <h3 class="text-2xl font-semibold text-rose-700 mb-1">Muhurtham</h3>
+                            <time class="text-sm font-medium text-gray-500 mb-2">27th Nov 2025, Thursday | 4:00 AM - 5:05 AM</time>
+                            <p class="text-gray-600">The holy wedding ceremony where we tie the knot. We seek your blessings as we begin our journey as husband and wife.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. After Event Photos -->
+        <section id="memories" class="py-16 md:py-24 section-bg-alt">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="bg-white p-8 md:p-12 rounded-xl shadow-xl border border-rose-100">
+                    <h2 class="font-display text-4xl md:text-5xl text-rose-600 mb-6">Event Memories</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        Our wedding photos and 360° videos will be available here after the event. Come back to relive the moments with us!
+                    </p>
+                    <p class="font-semibold text-gray-700 text-lg mb-6">
+                        Available from: <span class="text-rose-600">November 28, 2025</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#" class="inline-block bg-gray-300 text-gray-500 font-medium py-3 px-8 rounded-lg transition-colors cursor-not-allowed">
+                            View Photos (Coming Soon)
+                        </a>
+                        <a href="#" class="inline-block bg-gray-300 text-gray-500 font-medium py-3 px-8 rounded-lg transition-colors cursor-not-allowed">
+                            View 360° Video (Coming Soon)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Venue -->
+        <section id="venue" class="py-16 md:py-24 section-bg">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <!-- Details -->
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <h2 class="font-display text-5xl md:text-6xl text-rose-600 mb-6">The Venue</h2>
+                    <h3 class="text-3xl font-semibold text-gray-800 mb-3">
+                        P.T. Ramakrishna Chettiar Kalyana Mandapam A/c
+                    </h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        No. 18, Millers Road, Purasaiwalkam,
+                        <br>
+                        Chennai - 600 010.
+                    </p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=P.T.+Ramakrishna+Chettiar+Kalyana+Mandapam+Purasaiwalkam+Chennai" target="_blank" rel="noopener noreferrer"
+                       class="mt-8 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-colors">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        Get Directions
+                    </a>
+                </div>
+                <!-- Image/Map Placeholder -->
+                <div class="w-full md:w-1/2">
+                    <!-- Using a static image of the invitation as a placeholder -->
+                     <img src="p-t-ramakrishnan-chettiar-kalyana-mandapam-kilpauk-chennai-kalyana-mandapams-103e3xc.webp" alt="Wedding Invitation Card" class="rounded-xl shadow-2xl w-full h-auto object-cover"
+                     onerror="this.src='https://placehold.co/600x400/FDF4F5/D81B60?text=Venue+Location'">
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Wishes & Contact --><section id="contact" class="py-16 md:py-24 section-bg-alt">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <h2 class="font-display text-5xl md:text-6xl text-rose-600 mb-6">Send Your Wishes</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    We'd love to hear from you! Please leave us a message.
+                </p>
+                
+                <form id="wishes-form" action="https://formspree.io/f/mzzkpkqk" method="POST" class="bg-white p-8 rounded-xl shadow-xl border border-rose-100">
+                    <div class="mb-6">
+                        <label for="wisher-name" class="block text-sm font-medium text-gray-700 text-left mb-1">Your Name</label>
+                        <input type="text" id="wisher-name" name="name" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="wishes-message" class="block text-sm font-medium text-gray-700 text-left mb-1">Your Message</label>
+                        <textarea id="wishes-message" name="message" rows="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-300" placeholder="Type your loving wishes here..." required></textarea>
+                    </div>
+                    <button type="submit" id="wishes-submit-btn" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Send My Wishes
+                    </button>
+                    <p id="form-feedback" class="text-sm mt-4"></p>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="py-16 section-bg">
+            <div class="max-w-4xl mx-auto px-6 text-center text-gray-600">
+                 <p class="font-display text-4xl text-rose-600 mb-8">
+                    We can't wait to celebrate with you!
+                 </p>
+                 <h4 class="font-cursive text-7xl text-rose-700 mb-10">
+                    G & K
+                 </h4>
+                 
+                 <p class="text-sm">
+                     Developed by <a href="https://www.instagram.com/poorna_saai_3/" target="_blank" rel="noopener noreferrer" class="font-semibold text-rose-600 hover:underline">Poorna Saai</a>
+                 </p>
+            </div>
+        </footer>
+
+    </main>
+    
+    <script>
+        // --- Lucide Icons ---
+        lucide.createIcons();
+
+        // --- Countdown Timer ---
+        (function() {
+            // Set the date we're counting down to
+            // NOTE: Months are 0-indexed, so November is 10
+            const countDownDate = new Date("Nov 27, 2025 04:00:00").getTime();
+
+            // Update the count down every 1 second
+            const x = setInterval(function() {
+                // Get today's date and time
+                const now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                const distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the elements
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+                // If the count down is finished, write some text 
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-3xl font-display text-rose-600'>The day is here!</div>";
+                }
+            }, 1000);
+        })();
+
+        // --- Quiz Logic ---
+        let selectedSide = '';
+        const quizQuestions = {
+            groom: {
+                question: "What is Karthik's job title?",
+                answer: "Senior Global Engineer"
+            },
+            bride: {
+                question: "What is Geetha's alternate name?",
+                answer: "Jeevitha"
+            }
+        };
+
+        function selectSide(side) {
+            selectedSide = side;
+            document.getElementById('quiz-question').classList.remove('hidden');
+            const questionText = document.getElementById('question-text');
+            
+            if (side === 'groom') {
+                questionText.innerText = quizQuestions.groom.question;
+                document.getElementById('btn-groom').classList.add('bg-rose-600', 'text-white');
+                document.getElementById('btn-bride').classList.remove('bg-rose-600', 'text-white');
+            } else {
+                questionText.innerText = quizQuestions.bride.question;
+                document.getElementById('btn-bride').classList.add('bg-rose-600', 'text-white');
+                document.getElementById('btn-groom').classList.remove('bg-rose-600', 'text-white');
+            }
+            document.getElementById('quiz-feedback').innerText = '';
+            document.getElementById('quiz-answer').value = '';
+        }
+
+        function checkAnswer() {
+            if (!selectedSide) return;
+            
+            const answer = document.getElementById('quiz-answer').value.trim();
+            const feedback = document.getElementById('quiz-feedback');
+            const correctAnswer = quizQuestions[selectedSide].answer;
+
+            if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
+                feedback.innerText = "That's correct! You know us well!";
+                feedback.classList.remove('text-red-600');
+                feedback.classList.add('text-green-600');
+            } else {
+                feedback.innerText = "Not quite! Try again or ask around! 😉";
+                feedback.classList.remove('text-green-600');
+                feedback.classList.add('text-red-600');
+            }
+        }
+        
+         // --- Wishes Form (AJAX submission to Formspree) ---
+         const wishesForm = document.getElementById('wishes-form');
+        const feedback = document.getElementById('form-feedback');
+        const submitButton = document.getElementById('wishes-submit-btn');
+        
+        wishesForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(wishesForm);
+            const name = formData.get('name');
+            const message = formData.get('message');
+            
+            // Basic validation
+            if (!name || !message) {
+                feedback.innerText = "Please fill out both your name and message.";
+                feedback.classList.remove('text-green-600');
+                feedback.classList.add('text-red-600');
+                return;
+            }
+
+            // Check for placeholder URL
+            if (wishesForm.action.includes('YOUR_UNIQUE_FORM_ID')) {
+                 feedback.innerText = "Form is not yet configured by the developer. Please replace the form action URL.";
+                 feedback.classList.remove('text-green-600');
+                 feedback.classList.add('text-red-600');
+                 return;
+            }
+
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitButton.innerText = 'Sending...';
+            feedback.innerText = '';
+            feedback.classList.remove('text-red-600', 'text-green-600');
+
+            try {
+                // Send data to Formspree
+                const response = await fetch(wishesForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    feedback.innerText = "Thank you! Your wishes have been sent.";
+                    feedback.classList.add('text-green-600');
+                    wishesForm.reset();
+                } else {
+                    // Handle Formspree or network errors
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        feedback.innerText = data.errors.map(error => error.message).join(", ");
+                    } else {
+                        feedback.innerText = "Oops! Something went wrong. Please try again.";
+                    }
+                    feedback.classList.add('text-red-600');
+                }
+            } catch (error) {
+                // Handle network failure
+                feedback.innerText = "Network error. Please check your connection and try again.";
+                feedback.classList.add('text-red-600');
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerText = 'Send My Wishes';
+            }
+        });
+
+
+    </script>
+</body>
+</html>
